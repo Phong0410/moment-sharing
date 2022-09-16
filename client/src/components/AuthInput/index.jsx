@@ -21,7 +21,7 @@ const Input = ({
         value={value}
         onChange={handleOnChange}
         autoFocus={autoFocus}
-        variant="outlined"
+        variant="standard"
         fullWidth
         required
         InputProps={
