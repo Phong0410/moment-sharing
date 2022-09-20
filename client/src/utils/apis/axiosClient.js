@@ -10,7 +10,7 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use((req) => {
-  const token = localStorage.getItem("profile")?.token;
+  const token = JSON.parse(localStorage.getItem("profile"))?.token;
   if (token) {
     req.headers.Authorization = `Bearer ${token}`;
   }

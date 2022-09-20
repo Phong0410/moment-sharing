@@ -1,12 +1,15 @@
 import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { gapi } from "gapi-script";
 import { CLIENT_ID } from "./utils/apis/gapi";
+import { Container } from "@material-ui/core";
 
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import { useEffect } from "react";
+import Posts from "./pages/Home/Posts";
+import User from "./pages/Home/User";
 
 const start = () => {
   gapi.client.init({
@@ -27,12 +30,16 @@ function App() {
     navigate("/auth");
   }, [user, navigate]);
   return (
-    <div className="App">
+    <Container maxWidth={false} disableGutters={true} className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />}>
+          <Route path="/" element={<Navigate to={"/posts"} replace={true} />} />
+          <Route path="/users/:id" element={<User />} />
+          <Route path="/posts" element={<Posts />} />
+        </Route>
         <Route path="/auth" element={<Auth />} />
       </Routes>
-    </div>
+    </Container>
   );
 }
 

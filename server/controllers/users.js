@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -7,7 +6,6 @@ import User from "../models/user.js";
 import { secretKey } from "../utils/jwt.js";
 
 export const register = async (req, res) => {
-  console.log("running");
   const { email, password, confirmPassword, firstName, lastName } = req.body;
 
   try {

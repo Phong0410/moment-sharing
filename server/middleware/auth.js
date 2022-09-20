@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 
-import { secretKey } from "../utils/jwt";
+import { secretKey } from "../utils/jwt.js";
 
 // This is used to get userId from token and attach it to the request
 const auth = async (req, _, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization?.split(" ")[1];
     const isCustomAuth = token.length < 500;
 
     let decodedData;

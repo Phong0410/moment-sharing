@@ -3,7 +3,6 @@ import auth from "../utils/apis/auth";
 
 export const login = createAsyncThunk("auth/login", async (data) => {
   const result = await auth.login(data);
-
   return result;
 });
 
@@ -30,6 +29,11 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       localStorage.setItem("profile", JSON.stringify(action?.payload));
+    },
+    logout: (state) => {
+      state.user = undefined;
+      state.token = undefined;
+      localStorage.clear("profile");
     },
   },
   extraReducers: {
@@ -60,6 +64,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { googleLogin } = authSlice.actions;
+export const { googleLogin, logout } = authSlice.actions;
 
 export default authSlice.reducer;
